@@ -28,7 +28,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -40,7 +40,7 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class adbWireless extends ActionBarActivity {
+public class adbWireless extends AppCompatActivity {
 
 	public static final String PORT = "5555";
 	public static final boolean USB_DEBUG = false;

@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="20sp"
         android:paddingTop="10sp"
-        android:text="@string/top_text"
-        android:textColor="#ffffff" />
+        android:text="@string/top_text" />
 
     <LinearLayout
         android:id="@+id/LinearLayout01"
