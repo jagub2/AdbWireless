@@ -28,8 +28,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +39,7 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class adbWireless extends AppCompatActivity {
+public class adbWireless extends Activity {
 
 	public static final String PORT = "5555";
 	public static final boolean USB_DEBUG = false;
@@ -66,7 +65,7 @@ public class adbWireless extends AppCompatActivity {
 		setContentView(R.layout.main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setActionBar(toolbar);
 
 		this.iv_button = (ImageView) findViewById(R.id.iv_button);
 		this.tv_footer_1 = (TextView) findViewById(R.id.tv_footer_1);
@@ -129,7 +128,7 @@ public class adbWireless extends AppCompatActivity {
 
     @Override
     public void setTitle(CharSequence title) {
-        getSupportActionBar().setTitle(title);
+        getActionBar().setTitle(title);
     }
 
 	@Override
