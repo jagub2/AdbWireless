@@ -38,10 +38,12 @@ import android.net.wifi.WifiManager;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 public class Utils {
 
+	private static final String TAG = "AutoConnect";
 	public static NotificationManager mNotificationManager;
 	public static WakeLock mWakeLock;
 
@@ -171,7 +173,7 @@ public class Utils {
 		}
 
 		String urlRequest = "http://" + autoConIP + ":" + autoConPort + "/" + mode + "/" + Utils.getWifiIp(context);
-
+		Log.i(TAG, "url: "+urlRequest);
 		try {
 			new AutoConnectTask(urlRequest).execute();
 		} catch (Exception e) {
@@ -283,7 +285,16 @@ public class Utils {
 
 	@SuppressWarnings("deprecation")
 	public static void showNotification(Context context, int icon, String text) {
-		final Notification notifyDetails = new Notification(icon, text, System.currentTimeMillis());
+		Intent notifyIntent = new Intent(context, adbWireless.class);
+		notifyIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		PendingIntent intent = PendingIntent.getActivity(context, 0, notifyIntent, 0);
+
+		Notification.Builder builder = new Notification.Builder(context);
+		Notification notifyDetails = builder.setContentIntent(intent)
+				.setSmallIcon(icon).setTicker(text).setWhen( System.currentTimeMillis())
+				.setContentTitle(context.getResources().getString(R.string.noti_title))
+				.setContentText(text).build();
+
 		notifyDetails.flags = Notification.FLAG_ONGOING_EVENT;
 
 		if (prefsSound(context)) {
@@ -294,10 +305,6 @@ public class Utils {
 			notifyDetails.defaults |= Notification.DEFAULT_VIBRATE;
 		}
 
-		Intent notifyIntent = new Intent(context, adbWireless.class);
-		notifyIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		PendingIntent intent = PendingIntent.getActivity(context, 0, notifyIntent, 0);
-		notifyDetails.setLatestEventInfo(context, context.getResources().getString(R.string.noti_title), text, intent);
 
 		if (Utils.mNotificationManager != null) {
 			Utils.mNotificationManager.notify(Utils.START_NOTIFICATION_ID, notifyDetails);

@@ -18,11 +18,9 @@
 
 package siir.es.adbWireless;
 
-import java.net.URI;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.AsyncTask;
 
@@ -37,14 +35,14 @@ class AutoConnectTask extends AsyncTask<Void, Void, Void> {
 	@Override
 	protected Void doInBackground(Void... params) {
 		try {
-			URI url = new URI(this.url);
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpGet method = new HttpGet(url);
-			httpClient.execute(method);
+			URL obj = new URL(this.url);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+			con.setRequestMethod("GET");
+			con.connect();
+			int responseCode = con.getResponseCode();
 		} catch (Exception e) {
 			Debug.error("ERROR doInBackground()", e);
 		}
 		return null;
 	}
-
 }
