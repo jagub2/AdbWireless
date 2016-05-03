@@ -63,8 +63,8 @@
             android:paddingBottom="10sp"
             android:paddingTop="10sp"
             android:text="@string/connect_sample"
-            android:textColor="#2e2e2e"
-            android:textStyle="bold"
+            android:textSize="18sp"
+	    android:textStyle="bold"
             android:typeface="monospace" >
         </TextView>
 
