@@ -85,4 +85,7 @@
     <string name="pref_screenon_key">key_screenon</string>
     <!-- End 1.5.4 -->
 
+    <string name="enforce_off">SELinux enforcing apagado</string>
+    <string name="server_enforce_off">Desactivar el modo de SELinux ejecutante cuando se ejecuta adbWireless</string>
+
 </resources>

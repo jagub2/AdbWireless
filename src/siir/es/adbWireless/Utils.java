@@ -80,6 +80,10 @@ public class Utils {
 	public static boolean adbStart(Context context) {
 		try {
 			if (!adbWireless.USB_DEBUG) {
+				boolean enforceOff = prefsEnforce(context);
+				if(enforceOff) {
+					Utils.setEnforce("0");
+				}
 				Utils.setProp("service.adb.tcp.port", adbWireless.PORT);
 				try {
 					if (Utils.isProcessRunning("adbd")) {
@@ -127,6 +131,10 @@ public class Utils {
 		try {
 			if (!adbWireless.USB_DEBUG) {
 				if (adbWireless.mState) {
+					boolean enforceOff = prefsEnforce(context);
+					if(enforceOff) {
+						Utils.setEnforce("1");
+					}
 					setProp("service.adb.tcp.port", "-1");
 					runRootCommand("stop adbd");
 					runRootCommand("start adbd");
@@ -253,6 +261,10 @@ public class Utils {
 		return runRootCommand("setprop " + property + " " + value);
 	}
 
+	public static boolean setEnforce(String value) {
+		return runRootCommand("setenforce " + value);
+	}
+
 	public static String getWifiIp(Context context) {
 		WifiManager mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		int ip = mWifiManager.getConnectionInfo().getIpAddress();
@@ -338,6 +350,11 @@ public class Utils {
 	public static boolean prefsHaptic(Context context) {
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
 		return pref.getBoolean(context.getResources().getString(R.string.pref_haptic_key), true);
+	}
+
+	public static boolean prefsEnforce(Context context) {
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+		return pref.getBoolean(context.getResources().getString(R.string.pref_enforce_off_key), true);
 	}
 
 	public static boolean prefsWiFiOn(Context context) {

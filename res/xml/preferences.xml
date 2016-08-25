@@ -33,6 +33,11 @@
             android:key="@string/pref_haptic_key"
             android:summary="@string/server_haptic"
             android:title="@string/haptic" />
+        <CheckBoxPreference
+            android:defaultValue="@string/default_enforce_off"
+            android:key="@string/pref_enforce_off_key"
+            android:summary="@string/server_enforce_off"
+            android:title="@string/enforce_off" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/settings_title_autcon" >
         <CheckBoxPreference

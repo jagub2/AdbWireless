@@ -38,6 +38,8 @@
     <string name="server_noti">When the connection is active</string>
     <string name="haptic">Haptic feedback</string>
     <string name="server_haptic">On button press</string>
+    <string name="enforce_off">SELinux enforcing off</string>
+    <string name="server_enforce_off">Turn off SELinux enforcing mode when running adbWireless (useful if cannot connect to wireless adb)</string>
     <string name="wifi_on">WiFi auto on</string>
     <string name="server_wifi_on">Turn on WiFi when the app starts</string>
     <string name="wifi_off">WiFi auto off</string>
@@ -49,6 +51,7 @@
     <string name="default_sound">true</string>
     <string name="default_noti">true</string>
     <string name="default_haptic">true</string>
+    <string name="default_enforce_off">false</string>
     <string name="default_wifi_on">false</string>
     <string name="default_wifi_off">false</string>
     <string name="default_onboot">false</string>
@@ -58,6 +61,7 @@
     <string name="pref_sound_key">key_sound</string>
     <string name="pref_noti_key">key_noti</string>
     <string name="pref_haptic_key">key_haptic</string>
+    <string name="pref_enforce_off_key">key_enforce</string>
     <string name="pref_wifi_on_key">key_wifi_on</string>
     <string name="pref_wifi_off_key">key_wifi_off</string>
     <string name="pref_onboot_key">key_onboot</string>
